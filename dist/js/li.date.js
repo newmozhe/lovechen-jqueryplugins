@@ -6,7 +6,7 @@
             monthDisplay:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
             daysDisplay:["日","一","二","三","四","五","六"],
             daysCss:["lidate_holiday",null,null,null,null,null,"lidate_holiday"],
-            mode:1,
+            mode:0,
             showPrevDays:true,
             showNextDays:false,
             format:"yyyy/MM/dd",
