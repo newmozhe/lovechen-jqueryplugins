@@ -1,5 +1,5 @@
 # lovechen-jqueryplugins
-在 https://im.lovechen.net 项目中自己开发的部分JQuery插件，使用了JQuery和Font Awesome字体库，包括日期插件lidate、liemoji等。
+在 https://im.lovechen.net 项目中自己开发的部分JQuery插件，使用了JQuery和Font Awesome字体库，包括日期插件lidate、表情插件liemoji等。
 
 lidate：
 
