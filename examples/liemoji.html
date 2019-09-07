@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>LoveChen IM Plugin - lidate</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <link href="../src/css/li.emoji.min.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="../assets/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../src/js/li.emoji.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#btn_emoji").liemoji({
+                editor: "#div_container",
+                panelid: "qqicon",
+                icons: [{
+                    name: "QQ",
+                    path: "https://im.lovechen.net/img/face/wx/",
+                    nums: [100, 199],
+                    extension: ".gif"
+                },{
+                    name: "其它",
+                    list:[
+                            "https://im.lovechen.net/img/head/275_100.png",
+                            "https://im.lovechen.net/img/head/300_100.png",
+                            "https://im.lovechen.net/img/head/277_100.png",
+                            "https://im.lovechen.net/img/head/295_100.png",
+                            "https://im.lovechen.net/img/head/288_100.png",
+                        ]
+                }]
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="div_container" style="width: 460px;height:240px;border:1px solid #ccc;" contenteditable="true"></div>
+    <input id="btn_emoji" type="button" value="选择表情" />
+</body>
+
+</html>

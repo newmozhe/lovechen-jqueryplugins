@@ -1,0 +1,62 @@
+.liemoji_container{
+    display: inline-block;
+    background-color:#fff;
+    position: absolute;
+    border:1px solid #e3e3e3;
+    display: none;
+}
+
+.liemoji_container ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+.liemoji_container .imglist{
+    overflow-y:auto;
+}
+
+.liemoji_container ul li{
+    list-style:none;
+    display: inline-block;
+    border:1px solid #e3e3e3;
+    margin-top:-1;
+    margin-left: -1;
+    padding: 5px 3px;
+}
+
+.liemoji_container ul li img{
+    cursor: pointer;
+}
+
+.liemoji_container ul li img,.liemoji_icon{
+    padding:0 2px;
+    vertical-align: text-bottom;
+}
+
+.liemoji_container .liemoji_tab{
+    height: 28px;
+    background-color: #eee;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.liemoji_container .liemoji_tab ul li{
+    display: inline-block;
+    margin: 0;
+    border: none;
+    font-size: 14px;
+    padding: 0 1.2em;
+    height: 100%;
+    height: 2em;
+    line-height: 2em;
+    cursor: pointer;
+}
+
+.liemoji_container .liemoji_tab ul .currenttab{
+    background-color: #fff;
+    cursor: normal !important;
+}
+
