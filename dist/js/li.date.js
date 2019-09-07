@@ -268,7 +268,7 @@
                 var currentDate = new Date(that.year,that.month,day);
                 var dateFmt = that.formatDate(currentDate,that.opts.format);
 
-                if(typeof that.opts.onChoose !== "function" || that.opts.onChoose(that.year,that.month,day,dateFmt)){
+                if(typeof that.opts.onChoose !== "function" || that.opts.onChoose(that,currentDate,dateFmt)){
                     if(that.ele.prop("value") === undefined){
                         that.ele.text(dateFmt);
                     } else {
