@@ -3,7 +3,9 @@
 
 lidate：
     文件：li.date.js、li.date.css
+
     依赖：JQuery、Font Awesome
+    
     用途：在LoveChen IM 查看聊天记录模块中，用来显示哪天有聊天
 
     属性：
