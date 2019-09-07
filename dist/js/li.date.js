@@ -4,8 +4,9 @@
         DEFAULTOPTIONS={
             yearStep:5,
             monthDisplay:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
-            daysDisplay:["日","一","二","三","四","五","六"],
-            daysCss:["lidate_holiday",null,null,null,null,null,"lidate_holiday"],
+            weekDisplay:["日","一","二","三","四","五","六"],
+            weekCss:["lidate_holiday",null,null,null,null,null,"lidate_holiday"],
+            startOfWeek:0,
             mode:0,
             showPrevDays:true,
             showNextDays:false,
@@ -52,8 +53,8 @@
             this.ui.toolbar = $("<div class='lidate_toolbar'><i class='fa fa-angle-double-left' aria-hidden='true'></i><i class='fa fa-angle-left' aria-hidden='true'></i><span class='lidate_yeardisplay'></span><span class='lidate_monthdisplay'></span><select class='lidate_yearsel'></select>" + monthSelect + "<i class='fa fa-angle-right' aria-hidden='true'></i><i class='fa fa-angle-double-right' aria-hidden='true'></i></div>");
             
             var titleHtml = "<ul class='lidate_title'>";
-            for(var i=0;i<this.opts.daysDisplay.length;++i){
-                titleHtml += "<li " + (this.opts.daysCss[i] ? "class='" + this.opts.daysCss[i] + "'" : "") + ">" + this.opts.daysDisplay[i] + "</li>";
+            for(var i=0;i<this.opts.weekDisplay.length;++i){
+                titleHtml += "<li " + (this.opts.weekCss[i] ? "class='" + this.opts.weekCss[i] + "'" : "") + ">" + this.opts.weekDisplay[i] + "</li>";
             }
             this.ui.title = $(titleHtml);
             this.ui.body = $("<ul class='lidate_body mode" + this.opts.mode + "'></ul>");
@@ -70,6 +71,7 @@
             this.ui.monthSelect = this.ui.toolbar.find(".lidate_monthsel");
         },
         setYear:function(year){
+            year = parseInt(year);
             var dvalue = year - this.year;
             var seloptions = this.ui.yearSelect.children("option");
 
@@ -97,6 +99,8 @@
             this.year = year;
         },
         setMonth:function(month){
+            month = parseInt(month);
+
             if(month < 0){
                 this.setYear(this.year - 1);
                 this.month = 11;
@@ -122,10 +126,11 @@
             //补全前导
                 currentDate.setDate(1);
                 var firstDay = currentDate.getDay();
-                if(firstDay !=0){
+                var firstDayOffset = this.opts.startOfWeek <= firstDay ? firstDay - this.opts.startOfWeek : (7 - this.opts.startOfWeek) + firstDay;
+                if(firstDay != this.opts.startOfWeek){
                     var prevDay = this.monthDay[this.month == 0 ? 11 : this.month - 1] - firstDay;
     
-                    for(var i=1;i<=firstDay;++i){
+                    for(var i=1;i<= firstDayOffset;++i){
                         if(this.opts.showPrevDays){
                             this.ui.body.append("<li class='lidate_prevdays'>" + (prevDay + i) + "</li>");
                         }else{
@@ -137,16 +142,20 @@
             //填充本月日历
             for(var i=1;i<=this.monthDay[this.month];++i){
                 var liclass = " class='lidate_item ";
-                if(today && i == today){
-                    liclass += "lidate_today";
-                } else if(firstDay == 0 || firstDay == 6){
-                    liclass += "lidate_holiday";
+
+                if(this.opts.weekCss[firstDayOffset]){
+                    liclass += this.opts.weekCss[firstDayOffset];
                 }
+                
+                if(today && i == today){
+                    liclass += " lidate_today";
+                }
+
                 liclass += "'";
                 
                 this.ui.body.append("<li" + liclass + ">" + i + "</li>");
-                ++firstDay;
-                if(firstDay > 6) firstDay = 0;
+                ++firstDayOffset;
+                if(firstDayOffset > 6) firstDayOffset = 0;
             }
 
             //补全后续
@@ -260,7 +269,7 @@
                 var dateFmt = that.formatDate(currentDate,that.opts.format);
 
                 if(typeof that.opts.onChoose !== "function" || that.opts.onChoose(that.year,that.month,day,dateFmt)){
-                    if(that.ele.attr("value") === undefined){
+                    if(that.ele.prop("value") === undefined){
                         that.ele.text(dateFmt);
                     } else {
                         that.ele.val(dateFmt);

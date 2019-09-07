@@ -108,7 +108,7 @@
     color: #3291dd;
 }
 
-.lidate_panel .mode0 .lidate_item{
+.lidate_panel .mode0 .lidate_item,.lidate_panel .mode2 .lidate_item{
     cursor:pointer;
 }
 

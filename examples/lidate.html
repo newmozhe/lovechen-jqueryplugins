@@ -12,11 +12,50 @@
         <script type="text/javascript">
             $(function(){
                 $("#txt_date").lidate();
+
+                $("#txt_startofweek").lidate({
+                    weekDisplay:["二","三","四","五","六","日","一"],
+                    weekCss:[null,null,null,null,"lidate_holiday","lidate_holiday",null],
+                    startOfWeek:2
+                });
+
+                $("#txt_mode1").lidate({
+                    mode:1,
+                    flagDays:[1,3,5,7,9]
+                });
+
+                $("#txt_mode2").lidate({
+                    mode:2,
+                    flagDays:[1,3,5,7,9]
+                });
+                
+                $("#txt_english").lidate({
+                    monthDisplay:["January","February","March","April","May","June","July","August","September","October","November","December"],
+                    weekDisplay:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+                });
+
+                $("#div_date").lidate();
             });
         </script>
     </head>
 
     <body>
+        <h3>普通模式：</h3>
         <input id="txt_date" type="text" />
+
+        <h3>指定日历中星期的第一天：</h3>
+        <input id="txt_startofweek" type="text" />
+        
+        <h3>仅允许选择指定的日期：</h3>
+        <input id="txt_mode1" type="text" />
+        
+        <h3>仅允许选择未指定的日期：</h3>
+        <input id="txt_mode2" type="text" />
+
+        <h3>English：</h3>
+        <input id="txt_english" type="text" />
+
+        <h3>非文本框：</h3>
+        <div id="div_date">点击</div>
     </body>
 </html>
